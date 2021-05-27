@@ -14,10 +14,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//
+
 void MainWindow::on_Digit1_clicked()//1
 {
-    int x=1;
+
+    int x=2;
     if(Calc.comma==true&&Calc.Digit1==true&&Calc.operation!=true)
     {
         Calc.a=(Calc.a+x/pow(10,Calc.n));
