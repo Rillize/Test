@@ -78,7 +78,7 @@ void MainWindow::on_Digit1_clicked()//1
     Calc.Digit1=true;
     Calc.n++;
 }
-
+//444
 
 void MainWindow::on_Digit2_clicked()//2
 {
