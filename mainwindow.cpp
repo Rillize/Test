@@ -587,14 +587,18 @@ void MainWindow::on_Digit0_clicked()//0
     int x=0;
     if(Calc.comma==true&&Calc.Digit1==true&&Calc.operation!=true)
     {
-        Calc.a=(Calc.a+x)/10;
-        ui->lcdNumber->display(ceil(Calc.a*10000)/10000);
+        Calc.a=(Calc.a+x/pow(10,Calc.n));
+        QString Y;
+        Y.setNum (Calc.a,'g', Calc.n);
+        ui->lcdNumber->display(Y);
     }
+
     if(Calc.comma==true&&Calc.Digit2==true)
     {
-        Calc.b=(Calc.b+x)/10;
-        ui->lcdNumber->display(ceil(Calc.b*10000)/10000);
-
+        Calc.b=(Calc.b+x/pow(10,Calc.n));
+        QString Y;
+        Y.setNum (Calc.b,'g', Calc.n);
+        ui->lcdNumber->display(Y);
     }
     if(Calc.equal==true)//если после вычисления прибавляем к результату еще число.
     {
@@ -633,7 +637,7 @@ void MainWindow::on_summ_clicked()//сложение
     Calc.plus=true;
     Calc.operation=true;
     Calc.comma=false;
-    Calc.n=0;
+    //Calc.n=0;
 
 }
 
@@ -642,7 +646,7 @@ void MainWindow::on_minus_clicked()//вычитание
     Calc.minus=true;
     Calc.operation=true;
     Calc.comma=false;
-    Calc.n=0;
+    //Calc.n=0;
 }
 
 void MainWindow::on_multiplication_clicked()//умножение
