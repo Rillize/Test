@@ -8,9 +8,7 @@
 
 class Calculator
 {
-
-public:
-    int buttonNumber=0;
+    float x;
     float a=0;
     float b=0;
     bool Digit1;
@@ -22,8 +20,18 @@ public:
     bool division=false;
     bool operation=false;
     bool comma=false;
+
+    float result;
+public:
     int n=0;
-    float Calculate(int x)
+
+    void push_digit(float y)
+    {
+        Digit1=true;
+        n++;
+        x=y;
+    }
+    float Calculate()
     {
         if(comma==true&&Digit1==true&&operation!=true)
         {
@@ -76,12 +84,33 @@ public:
         }
     }
 
+    float resultFunc()
+    {
+
+        if(plus)
+        {
+            result=summ(a,b);
+        }
+        if(division)
+        {
+            result=divide(a,b);
+        }
+        if(minus)
+        {
+            result=subtraction(a,b);
+        }
+        if(multiplication)
+        {
+            result=multiply(a,b);
+        }
+        return result;
+    }
+
     float summ(float a,float b)
     {
         return a+b;
     }
 
-    float result;
     float subtraction(float a,float b)
     {
         return a-b;
@@ -94,6 +123,46 @@ public:
     float divide(float a, float b)
     {
         return a/b;
+    }
+    void push_plus()
+    {
+        plus=true;
+        operation=true;
+        comma=false;
+    }
+    void push_minus()
+    {
+        minus=true;
+        operation=true;
+        comma=false;
+    }
+    void push_multiplication()
+    {
+        multiplication=true;
+        operation=true;
+        comma=false;
+    }
+    void push_division()
+    {
+        division=true;
+        operation=true;
+        comma=false;
+    }
+    void push_comma()
+    {
+        comma=true;
+    }
+    void clear()
+    {
+        a=0;
+        b=0;
+        Digit1=false;
+        Digit2=false;
+        plus=false;
+        equal=false;
+        operation=false;
+        comma=false;
+        n=0;
     }
 
 

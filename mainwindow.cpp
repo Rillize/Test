@@ -13,201 +13,126 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 void MainWindow::on_Digit1_clicked()//1
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(1),'g', Calc.n);
+    Calc.push_digit(1);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
-
 }
 
 void MainWindow::on_Digit2_clicked()//2
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(2),'g', Calc.n);
+    Calc.push_digit(2);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 
 void MainWindow::on_Digit3_clicked()//3
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(3),'g', Calc.n);
+    Calc.push_digit(3);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 
 void MainWindow::on_Digit4_clicked()//4
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(4),'g', Calc.n);
+    Calc.push_digit(4);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
-
 }
 
 
 void MainWindow::on_Digit5_clicked()//5
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(5),'g', Calc.n);
+    Calc.push_digit(5);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 
 void MainWindow::on_Digit6_clicked()//5
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(6),'g', Calc.n);
+    Calc.push_digit(6);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 void MainWindow::on_Digit7_clicked()//7
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(7),'g', Calc.n);
+    Calc.push_digit(7);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 
 
 void MainWindow::on_Digit8_clicked()//8
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(8),'g', Calc.n);
+    Calc.push_digit(8);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 
 
 void MainWindow::on_Digit9_clicked()//9
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(9),'g', Calc.n);
+    Calc.push_digit(9);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
-
 
 void MainWindow::on_Digit0_clicked()//0
 {
-    Calc.n++;
     QString Y;
-    Y.setNum (Calc.Calculate(0),'g', Calc.n);
+    Calc.push_digit(0);
+    Y.setNum (Calc.Calculate(),'g', Calc.n);
     ui->lcdNumber->display(Y);
-    Calc.Digit1=true;
 }
 
 void MainWindow::on_summ_clicked()//сложение
 {
-    Calc.plus=true;
-    Calc.operation=true;
-    Calc.comma=false;
-
-
+    Calc.push_plus();
 }
 
 void MainWindow::on_minus_clicked()//вычитание
 {
-    Calc.minus=true;
-    Calc.operation=true;
-    Calc.comma=false;
-
+    Calc.push_minus();
 }
 
 void MainWindow::on_multiplication_clicked()//умножение
 {
-    Calc.multiplication=true;
-    Calc.operation=true;
-    Calc.comma=false;
+    Calc.push_multiplication();
 }
 
 void MainWindow::on_division_clicked()//деление
 {
-
-    Calc.division=true;
-    Calc.operation=true;
-    Calc.comma=false;
+    Calc.push_division();
 }
-
-
 
 void MainWindow::on_result_clicked()//равно
 {
-    if(Calc.plus)
-    {
-        Calc.result=Calc.summ(Calc.a,Calc.b);
+        Calc.resultFunc();
         QString Y;
-        Y.setNum (Calc.result,'g', Calc.n);
+        Y.setNum (Calc.resultFunc(),'g', Calc.n);
         ui->lcdNumber->display(Y);
-    }
-
-    if(Calc.division)
-    {
-        Calc.result=Calc.divide(Calc.a,Calc.b);
-        QString Y;
-        Y.setNum (Calc.result,'g', Calc.n);
-        ui->lcdNumber->display(Y);
-    }
-
-    if(Calc.minus)
-    {
-        Calc.result=Calc.subtraction(Calc.a,Calc.b);
-        QString Y;
-        Y.setNum (Calc.result,'g', Calc.n);
-        ui->lcdNumber->display(Y);
-    }
-
-    if(Calc.multiplication)
-    {
-        Calc.result=Calc.multiply(Calc.a,Calc.b);
-        QString Y;
-        Y.setNum (Calc.result,'g', Calc.n);
-        ui->lcdNumber->display(Y);
-    }
-
-    Calc.equal=true;
-    Calc.a=0;
-    Calc.b=0;
-    Calc.Digit1=false;
-    Calc.Digit2=false;
-    Calc.plus=false;
-    Calc.minus=false;
-    Calc.operation=false;
-    Calc.multiplication=false;
-    Calc.n=0;
+        Calc.clear();
 }
-
 
 void MainWindow::on_clear_clicked()
 {
+    Calc.clear();
     ui->lcdNumber->display(0);
-    Calc.a=0;
-    Calc.b=0;
-    Calc.Digit1=0;
-    Calc.Digit2=0;
-    Calc.plus=false;
-    Calc.equal=false;
-    Calc.operation=false;
-    Calc.comma=false;
-    Calc.n=0;//
 }
 
 void MainWindow::on_comma_clicked()
 {
-    Calc.comma=true;
+    Calc.push_comma();
 }
 
 
