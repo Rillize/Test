@@ -9,6 +9,7 @@
 class Calculator
 {
     float x;
+    int n=0;
     float a=0;
     float b=0;
     bool Digit1;
@@ -23,25 +24,32 @@ class Calculator
 
     float result;
 public:
-    int n=0;
+
+
 
     void push_digit(float y)
     {
         Digit1=true;
         n++;
         x=y;
+
+    }
+
+    int degree()
+    {
+        return n;
     }
     float Calculate()
     {
         if(comma==true&&Digit1==true&&operation!=true)
         {
-            a=(a+x/pow(10,n));
+            a=(a+x/pow(10,n-1));
             return a;
         }
 
         if(comma==true&&Digit2==true)
         {
-            b=(b+x/pow(10,n));
+            b=(b+x/pow(10,n-1));
             return b;
         }
 
@@ -60,7 +68,7 @@ public:
 
         if(a==0&&comma==true&&Digit1==true)
         {
-            a=(a+x/pow(10,n));
+            a=(a+x/pow(10,n-1));
            return a;
         }
 
@@ -82,6 +90,7 @@ public:
             a=a*10+x;
             return a;
         }
+
     }
 
     float resultFunc()
