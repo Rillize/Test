@@ -3,17 +3,17 @@
 #endif // CALCULATOR_H
 #include <QString>
 #include <cmath>
-
+#include <string>
 
 
 class Calculator
 {
-    float x;
+    std::string x="";
     int n=0;
-    float a=0;
-    float b=0;
-    bool Digit1;
-    bool Digit2;
+    std::string a="";
+    std::string b="";
+    bool digit1=false;
+    bool digit2=false;
     bool plus=false;
     bool minus=false;
     bool equal=false;
@@ -21,158 +21,121 @@ class Calculator
     bool division=false;
     bool operation=false;
     bool comma=false;
-
+    float aF=0;
+    float bF=0;
     float result;
 public:
 
-
-
-    void push_digit(float y)
+void push_digit(std::string y)
     {
-        Digit1=true;
         n++;
         x=y;
-
     }
-
     int degree()
     {
         return n;
     }
-    float Calculate()
+std::string check()
+{
+
+    if(digit1==true&&operation==false)
     {
-        if(comma==true&&Digit1==true&&operation!=true)
-        {
-            a=(a+x/pow(10,n-1));
-            return a;
-        }
-
-        if(comma==true&&Digit2==true)
-        {
-            b=(b+x/pow(10,n-1));
-            return b;
-        }
-
-        if(equal==true)//если после вычисления прибавляем к результату еще число.
-        {
-            a=result;
-            b=x;
-            return b;
-        }
-
-        if(Digit1==false)
-        {
-            a=x;
-            return a;
-        }
-
-        if(a==0&&comma==true&&Digit1==true)
-        {
-            a=(a+x/pow(10,n-1));
-           return a;
-        }
-
-        if(Digit2==true&&operation==true&&comma==false)//вводим число из нескольких цифр (аргумент b)
-        {
-            b=b*10+x;
-            return b;
-        }
-
-        if(Digit1==true&&operation==true&&Digit2==false)//вводим одно и то же число в качестве второго аргумента
-        {
-            b=x;
-            Digit2=true;
-            return b;
-        }
-
-        if(Digit1==true&&operation==false&&comma==false)//вводим число из нескольких цифр( аргумент a)
-        {
-            a=a*10+x;
-            return a;
-        }
-
+        a=a+x;
+        return a;
+    }
+    if(digit2==true)
+    {
+        b=b+x;
+        return b;
+    }
+    if(equal==true)//если после вычисления прибавляем к результату еще число.
+    {
+        a=result;
+        b=x;
+        return b;
+    }
+    if(digit1==false)
+    {
+        a=x;
+        digit1=true;
+        return a;
     }
 
-    float resultFunc()
+    if(digit2==true&&operation==true)//вводим число из нескольких цифр (аргумент b)
     {
-
-        if(plus)
-        {
-            result=summ(a,b);
-        }
-        if(division)
-        {
-            result=divide(a,b);
-        }
-        if(minus)
-        {
-            result=subtraction(a,b);
-        }
-        if(multiplication)
-        {
-            result=multiply(a,b);
-        }
-        return result;
+        b=b+x;
+        return b;
     }
-
-    float summ(float a,float b)
+    if(digit1==true&&operation==true&&digit2==false)//вводим одно и то же число в качестве второго аргумента
     {
-        return a+b;
+        b=x;
+        digit2=true;
+        return b;
     }
-
-    float subtraction(float a,float b)
+    if(digit1==true&&operation==false)//вводим число из нескольких цифр( аргумент a)
     {
-        return a-b;
+        a=a+x;
+        return a;
     }
-
-    float multiply(float a, float b)
+}
+float resultFunc()
+{
+    if(plus)
     {
-        return a*b;
+        aF=std::stof(a);
+        bF=std::stof(b);
+        result=aF+bF;
     }
-    float divide(float a, float b)
+    if(division)
     {
-        return a/b;
+        aF=std::stof(a);
+        bF=std::stof(b);
+        result=aF/bF;
     }
-    void push_plus()
+    if(minus)
+    {
+        aF=std::stof(a);
+        bF=std::stof(b);
+        result=aF-bF;
+    }
+    if(multiplication)
+    {
+        aF=std::stof(a);
+        bF=std::stof(b);
+        result=aF*bF;
+    }
+    return result;
+}
+void push_plus()
     {
         plus=true;
         operation=true;
         comma=false;
     }
-    void push_minus()
+void push_minus()
     {
         minus=true;
         operation=true;
-        comma=false;
     }
-    void push_multiplication()
+void push_multiplication()
     {
         multiplication=true;
         operation=true;
-        comma=false;
     }
-    void push_division()
+void push_division()
     {
         division=true;
         operation=true;
-        comma=false;
     }
-    void push_comma()
+void clear()
     {
-        comma=true;
-    }
-    void clear()
-    {
-        a=0;
-        b=0;
-        Digit1=false;
-        Digit2=false;
+        aF=0;
+        bF=0;
+        digit1=false;
+        digit2=false;
         plus=false;
         equal=false;
         operation=false;
-        comma=false;
         n=0;
     }
-
-
 };
