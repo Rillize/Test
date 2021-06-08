@@ -16,83 +16,101 @@ MainWindow::~MainWindow()
 void MainWindow::on_Digit1_clicked()//1
 {
     Calc.push_digit("1");
-    result1=std::stof(Calc.check());
+    //result1=std::stof(Calc.check());
     QString Y;
-    Y.setNum (result1,'g', Calc.degree());
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
     ui->lcdNumber->display(Y);
 }
 
 void MainWindow::on_Digit2_clicked()//2
 {
-
     Calc.push_digit("2");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 
 void MainWindow::on_Digit3_clicked()//3
 {
-
     Calc.push_digit("3");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 void MainWindow::on_Digit4_clicked()//4
 {
     Calc.push_digit("4");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 
 
 void MainWindow::on_Digit5_clicked()//5
 {
-
     Calc.push_digit("5");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 
 void MainWindow::on_Digit6_clicked()//5
 {
-
     Calc.push_digit("6");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 void MainWindow::on_Digit7_clicked()//7
 {
-
     Calc.push_digit("7");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 
 
 void MainWindow::on_Digit8_clicked()//8
 {
-
     Calc.push_digit("8");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 
 
 void MainWindow::on_Digit9_clicked()//9
 {
-
     Calc.push_digit("9");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+    //result1=std::stof(Calc.check());
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
+    ui->lcdNumber->display(Y);
 }
 
 void MainWindow::on_Digit0_clicked()//0
 {
-
     Calc.push_digit("0");
-    result1=std::stof(Calc.check());
+    //result1=std::stof(Calc.check());
     QString Y;
-    Y.setNum (result1,'g', Calc.degree());
+    Y=QString(Calc.check().c_str());
+    //Y.setNum (result1,'g', Calc.degree());
     ui->lcdNumber->display(Y);
 }
 
@@ -118,7 +136,10 @@ void MainWindow::on_division_clicked()//деление
 
 void MainWindow::on_result_clicked()//равно
 {
-    ui->lcdNumber->display(Calc.resultFunc());
+    QString Y;
+    Y.setNum (Calc.resultFunc(),'g', Calc.degree());
+    ui->lcdNumber->display(Y);
+    //ui->lcdNumber->display(Calc.resultFunc());
     Calc.clear();
 }
 
@@ -130,9 +151,15 @@ void MainWindow::on_clear_clicked()
 
 void MainWindow::on_comma_clicked()
 {
+
     Calc.push_digit(".");
-    result1=std::stof(Calc.check());
-    ui->lcdNumber->display(result1);
+
+    QString Y;
+    Y=QString(Calc.check().c_str());
+    //result1=std::stof(Calc.check());
+    ui->lcdNumber->display(Y);
+    Calc.push_comma();
+
 }
 
 

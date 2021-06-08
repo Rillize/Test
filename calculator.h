@@ -28,6 +28,10 @@ public:
 
 void push_digit(std::string y)
     {
+    if(y=="."&&comma)
+        {
+            return;
+        }
         n++;
         x=y;
     }
@@ -37,6 +41,7 @@ void push_digit(std::string y)
     }
 std::string check()
 {
+
 
     if(digit1==true&&operation==false)
     {
@@ -77,6 +82,7 @@ std::string check()
         a=a+x;
         return a;
     }
+
 }
 float resultFunc()
 {
@@ -127,6 +133,10 @@ void push_division()
         division=true;
         operation=true;
     }
+void push_comma()
+    {
+        comma=true;
+    }
 void clear()
     {
         aF=0;
@@ -136,6 +146,7 @@ void clear()
         plus=false;
         equal=false;
         operation=false;
+        comma=false;
         n=0;
     }
 };
