@@ -8,7 +8,6 @@
 
 class Calculator
 {
-    std::string x="";
     int n=0;
     std::string a="";
     std::string b="";
@@ -24,120 +23,119 @@ class Calculator
     float aF=0;
     float bF=0;
     float result;
-public:
 
-void push_digit(std::string y)
+public:
+    std::string push_digit(std::string y)
     {
-    if(y=="."&&comma)
+        if(y=="."&&comma)
         {
-            return;
+            return "";
         }
         n++;
-        x=y;
+        if(digit1==true&&operation==false)
+        {
+            a=a+y;
+            return a;
+        }
+        if(digit2==true)
+        {
+            b=b+y;
+            return b;
+        }
+        if(equal==true)//если после вычисления прибавляем к результату еще число.
+        {
+            a=result;
+            b=y;
+            return b;
+        }
+        if(digit1==false)
+        {
+            a=y;
+            digit1=true;
+            return a;
+        }
+        if(digit2==true&&operation==true)//вводим число из нескольких цифр (аргумент b)
+        {
+            b=b+y;
+            return b;
+        }
+        if(digit1==true&&operation==true&&digit2==false)//вводим одно и то же число в качестве второго аргумента
+        {
+            b=y;
+            digit2=true;
+            return b;
+        }
+        if(digit1==true&&operation==false)//вводим число из нескольких цифр( аргумент a)
+        {
+            a=a+y;
+            return a;
+        }
+
     }
     int degree()
     {
         return n;
     }
-std::string check()
-{
-
-
-    if(digit1==true&&operation==false)
+    float resultFunc()
     {
-        a=a+x;
-        return a;
-    }
-    if(digit2==true)
-    {
-        b=b+x;
-        return b;
-    }
-    if(equal==true)//если после вычисления прибавляем к результату еще число.
-    {
-        a=result;
-        b=x;
-        return b;
-    }
-    if(digit1==false)
-    {
-        a=x;
-        digit1=true;
-        return a;
-    }
-
-    if(digit2==true&&operation==true)//вводим число из нескольких цифр (аргумент b)
-    {
-        b=b+x;
-        return b;
-    }
-    if(digit1==true&&operation==true&&digit2==false)//вводим одно и то же число в качестве второго аргумента
-    {
-        b=x;
-        digit2=true;
-        return b;
-    }
-    if(digit1==true&&operation==false)//вводим число из нескольких цифр( аргумент a)
-    {
-        a=a+x;
-        return a;
+        if(plus)
+        {
+            aF=std::stof(a);
+            bF=std::stof(b);
+            result=aF+bF;
+        }
+        if(division)
+        {
+            aF=std::stof(a);
+            bF=std::stof(b);
+            result=aF/bF;
+        }
+        if(minus)
+        {
+            aF=std::stof(a);
+            bF=std::stof(b);
+            result=aF-bF;
+        }
+        if(multiplication)
+        {
+            aF=std::stof(a);
+            bF=std::stof(b);
+            result=aF*bF;
+        }
+        return result;
     }
 
-}
-float resultFunc()
-{
-    if(plus)
-    {
-        aF=std::stof(a);
-        bF=std::stof(b);
-        result=aF+bF;
-    }
-    if(division)
-    {
-        aF=std::stof(a);
-        bF=std::stof(b);
-        result=aF/bF;
-    }
-    if(minus)
-    {
-        aF=std::stof(a);
-        bF=std::stof(b);
-        result=aF-bF;
-    }
-    if(multiplication)
-    {
-        aF=std::stof(a);
-        bF=std::stof(b);
-        result=aF*bF;
-    }
-    return result;
-}
-void push_plus()
+    void push_plus()
     {
         plus=true;
         operation=true;
         comma=false;
     }
-void push_minus()
+
+    void push_minus()
     {
         minus=true;
         operation=true;
     }
-void push_multiplication()
+
+    void push_multiplication()
     {
         multiplication=true;
         operation=true;
     }
-void push_division()
+
+    void push_division()
     {
         division=true;
         operation=true;
     }
-void push_comma()
+
+    void push_comma()
     {
         comma=true;
     }
-void clear()
+
+    void clear()
     {
         aF=0;
         bF=0;
