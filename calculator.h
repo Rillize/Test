@@ -32,17 +32,17 @@ public:
             return "";
         }
         n++;
-        if(digit1==true&&operation==false)
+        if(digit1&&operation==false)
         {
             a=a+y;
             return a;
         }
-        if(digit2==true)
+        if(digit2)
         {
             b=b+y;
             return b;
         }
-        if(equal==true)//если после вычисления прибавляем к результату еще число.
+        if(equal)//если после вычисления прибавляем к результату еще число.
         {
             a=result;
             b=y;
@@ -54,18 +54,18 @@ public:
             digit1=true;
             return a;
         }
-        if(digit2==true&&operation==true)//вводим число из нескольких цифр (аргумент b)
+        if(digit2&&operation)//вводим число из нескольких цифр (аргумент b)
         {
             b=b+y;
             return b;
         }
-        if(digit1==true&&operation==true&&digit2==false)//вводим одно и то же число в качестве второго аргумента
+        if(digit1&&operation&&digit2==false)//вводим одно и то же число в качестве второго аргумента
         {
             b=y;
             digit2=true;
             return b;
         }
-        if(digit1==true&&operation==false)//вводим число из нескольких цифр( аргумент a)
+        if(digit1&&operation==false)//вводим число из нескольких цифр( аргумент a)
         {
             a=a+y;
             return a;
